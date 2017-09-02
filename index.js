@@ -13,7 +13,5 @@ require('./server/config/routes')(app);
 require('./server/config/passport')();
 // console.log(config);
 
-
-
 app.listen(config.port);
 console.log('Express ready!');

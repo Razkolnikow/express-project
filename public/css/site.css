@@ -14,3 +14,7 @@ h1 {
 .menu li:after {
   content: "\00a0";
 }
+
+.delimeter {
+  margin-right: 25px;
+}
