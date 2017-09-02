@@ -18,4 +18,6 @@ module.exports = (config) => {
   db.on('error', (err) => {
     console.log(err);
   })
+
+  require('../data/User').seedAminUser();
 }
