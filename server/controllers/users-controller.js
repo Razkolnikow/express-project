@@ -7,6 +7,7 @@ module.exports = {
   },
   create: (req, res) => {
     let user = req.body;
+    console.log(user);
 
     if (user.password !== user.confirmPassword) {
       user.globalError = 'Passwords do not match!';
@@ -22,7 +23,7 @@ module.exports = {
             }
           })
         });
-        
+
       res.redirect('/');
     }
   }
