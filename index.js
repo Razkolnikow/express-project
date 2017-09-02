@@ -11,11 +11,7 @@ require('./server/config/database')(config);
 require('./server/config/express')(config, app);
 // console.log(config);
 
-app.get('/', function (req, res) {
-
-  console.log('MongoDb ready!');
-  res.render('index');
-});
+require('./server/config/routes')(app);
 
 app.listen(config.port);
 console.log('Express ready!');
