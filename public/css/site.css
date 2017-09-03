@@ -18,3 +18,7 @@ h1 {
 .delimeter {
   margin-right: 25px;
 }
+
+#logout-form {
+    display: inline-block
+}

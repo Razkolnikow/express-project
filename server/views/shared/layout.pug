@@ -11,8 +11,18 @@ html
         li 
           a(href='/about') About   
         li.delimeter
-        li
-          a(href="/users/register") Register
+        if(currentUser)
+          li
+            span= currentUser.username
+          li
+            form#logout-form(action="/users/logout" method="post")
+              a(href="javascript:document.getElementById('logout-form').submit()") Logout
+
+        else  
+          li
+            a(href="/users/register") Register
+          li
+            a(href="/users/login") Login
       if(globalError)
         h3= globalError
       block main-content

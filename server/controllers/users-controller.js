@@ -15,16 +15,55 @@ module.exports = {
     } else {
       user.salt = encryption.generateSalt();
       user.hashedPass = encryption.generateHashedPassword(user.salt, user.password);
-      User.create(user)
+      User
+        .create(user)
         .then(user => {
           req.logIn(user, (err, user) => {
             if (err) {
-              res.render('users/register', { globalError: '500' })
+              res.render('users/register', {
+                globalError: '500'
+              })
+              return;
             }
+
+            res.redirect('/');
           })
         });
-
-      res.redirect('/');
     }
+  },
+  login: (req, res) => {
+    res.render('users/login')
+  },
+  authenticate: function (req, res) {
+    let inputUser = req.body;
+    console.log(inputUser);
+    User
+      .findOne({
+        username: inputUser.username
+      })
+      .then(user => {
+        if (!user || !user.authenticate(inputUser.password)) {
+          res.render('users/login', {
+            globalError: 'Invalid username or password'
+          });
+          return;
+        } else {
+          req.logIn(user, (err, user) => {
+            if (err) {
+              res.render('users/login', {
+                globalError: '500'
+              })
+              return;
+            }
+          })
+        }
+
+        res.redirect('/');
+      })
+  },
+  logout: (req, res) => {
+    req.logout();
+    res.redirect('/');
   }
+
 }

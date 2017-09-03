@@ -13,12 +13,8 @@ let userSchema = mongoose.Schema({
 });
 
 userSchema.method({
-  authenticate: (pass) => {
-    if (encryption.generateHashedPassword(this.salt, pass) === this.hashedPass) {
-      return true;
-    } else {
-      return false;
-    }
+  authenticate: function (pass) {
+    return encryption.generateHashedPassword(this.salt, pass) === this.hashedPass;
   }
 })
 

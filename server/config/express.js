@@ -19,6 +19,12 @@ module.exports = (config, app) => {
   }))
   app.use(passport.initialize())
   app.use(passport.session())
+  app.use((req, res, next) => {
+    if(req.user) {
+      res.locals.currentUser = req.user;
+    }
 
+    next() 
+  })
   app.use(express.static(config.rootPath + 'public'));
 }
