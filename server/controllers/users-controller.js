@@ -66,6 +66,6 @@ module.exports = {
     res.redirect('/');
   },
   notAuthorized: (req, res) => {
-    res.render('/users/notauthorized');
+    res.render('users/notauthorized');
   }
 }
