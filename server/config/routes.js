@@ -9,7 +9,8 @@ module.exports = (app) => {
   app.get('/users/login', controllers.users.login);
   app.post('/users/authenticate', controllers.users.authenticate);
   app.post('/users/logout', controllers.users.logout);
-  app.get('/articles/create', auth.isAuthenticated, controllers.articles.create);
+  app.get('/articles/create', auth.isInRole('Admin'), controllers.articles.create);
+  app.get('/users/notauthorized', controllers.users.notAuthorized);
 
   app.all('*', (req, res) => {
     res.status(404);

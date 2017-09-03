@@ -64,6 +64,8 @@ module.exports = {
   logout: (req, res) => {
     req.logout();
     res.redirect('/');
+  },
+  notAuthorized: (req, res) => {
+    res.render('/users/notauthorized');
   }
-
 }
